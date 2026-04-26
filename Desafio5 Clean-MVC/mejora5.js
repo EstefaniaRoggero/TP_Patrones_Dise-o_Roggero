@@ -1,19 +1,20 @@
-// Modelo
-function obtenerDatos() {
-  return [1, 2, 3, 4];
+// Modelo (datos)
+function obtenerUsuarios() {
+  return ["Admin", "Editor", "Cliente"];
 }
 
-// Lógica
-function filtrarDatos(datos) {
-  return datos.filter(n => n > 2);
+// Lógica (controlador)
+function filtrarUsuarios(usuarios) {
+  return usuarios.filter(u => u !== "Admin");
 }
 
 // Vista
-function mostrarDatos(datos) {
-  console.log("Resultado:", datos);
+function mostrarUsuarios(lista) {
+  console.log("Lista de usuarios:");
+  lista.forEach(u => console.log("- " + u));
 }
 
-// App
-const datos = obtenerDatos();
-const filtrados = filtrarDatos(datos);
-mostrarDatos(filtrados);
+// Ejecución
+const usuarios = obtenerUsuarios();
+const filtrados = filtrarUsuarios(usuarios);
+mostrarUsuarios(filtrados);

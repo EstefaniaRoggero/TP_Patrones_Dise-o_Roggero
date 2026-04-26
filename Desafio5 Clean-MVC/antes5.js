@@ -1,8 +1,10 @@
 function gestionarusuarios() {
     const lista = ["Admin", "Editor", "Cliente"];
 
-    const filtrados = lista.filter(usuario => usuario !== "Admin");
+    const filtrados = lista.filter(u => u !== "Admin");
     
     console.log("<h1>Lista de usuarios</h1>");
-        filtrados.forEach(usuario => console.log(`<p>${usuario}</p>`));
+        filtrados.forEach(u => console.log("<li>" + u + "</li>"));
 }   
+
+gestionarusuarios();

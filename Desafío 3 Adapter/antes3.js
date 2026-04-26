@@ -5,4 +5,6 @@ const sistemaNuevo  = {
 
 function ProcesarVenta(plataforma) {
     plataforma.pagar(500);
-}       
+}  
+
+ProcesarVenta(sistemaNuevo);

@@ -4,28 +4,32 @@ class Pizza {
   }
 }
 
-class Queso {
+// Decorador base
+class Ingrediente {
   constructor(pizza) {
     this.pizza = pizza;
   }
 
   costo() {
-    return this.pizza.costo() + 200;
+    return this.pizza.costo();
   }
 }
 
-class Pepperoni {
-  constructor(pizza) {
-    this.pizza = pizza;
-  }
-
+class Queso extends Ingrediente {
   costo() {
-    return this.pizza.costo() + 300;
+    return super.costo() + 200;
   }
 }
 
+class Pepperoni extends Ingrediente {
+  costo() {
+    return super.costo() + 300;
+  }
+}
+
+// Uso
 let pizza = new Pizza();
 pizza = new Queso(pizza);
 pizza = new Pepperoni(pizza);
 
-console.log(pizza.costo()); // 1500
+console.log("Costo final:", pizza.costo());

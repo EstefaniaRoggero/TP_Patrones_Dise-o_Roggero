@@ -1,3 +1,5 @@
+// SOLUCIÓN:
+// Se aplica Singleton para tener una única instancia compartida
 class Config {
   constructor() {
     if (Config.instance) {
