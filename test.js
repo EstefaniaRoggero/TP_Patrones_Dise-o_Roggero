@@ -1,3 +1,40 @@
+class ChatRoom {
+  constructor() {
+    this.usuarios = [];
+  }
+
+  agregar(usuario) {
+    this.usuarios.push(usuario);
+  }
+
+  enviar(mensaje, emisor) {
+    this.usuarios.forEach(user => {
+      if (user !== emisor) {
+        user.recibir(mensaje);
+      }
+    });
+  }
+}
+
+class Usuario {
+  constructor(nombre, chat) {
+    this.nombre = nombre;
+    this.chat = chat;
+  }
+
+  enviar(mensaje) {
+    this.chat.enviar(this.nombre + ": " + mensaje, this);
+  }
+
+  recibir(mensaje) {
+    console.log(mensaje);
+  }
+}
+
+function filtrarUsuarios(lista) {
+  return lista.filter(u => u !== "Admin");
+}
+
 function test_enviar_mensaje_mediator() {
 
     const chat = new ChatRoom();
@@ -10,14 +47,18 @@ function test_enviar_mensaje_mediator() {
 
     let mensajeRecibido = "";
 
-    // Simulación del método recibir
     u2.recibir = (mensaje) => {
         mensajeRecibido = mensaje;
     };
 
     u1.enviar("Hola!");
 
-    console.assert(mensajeRecibido === "Ana: Hola!");
+    console.assert(
+        mensajeRecibido === "Ana: Hola!",
+        "❌ Error en Mediator"
+    );
+
+    console.log("✅ Test Mediator correcto");
 }
 
 function test_filtrarUsuarios() {
@@ -28,6 +69,12 @@ function test_filtrarUsuarios() {
 
     console.assert(
         JSON.stringify(resultado) ===
-        JSON.stringify(["Editor", "Cliente"])
+        JSON.stringify(["Editor", "Cliente"]),
+        "❌ Error en filtrado"
     );
+
+    console.log("✅ Test filtrarUsuarios correcto");
 }
+
+test_enviar_mensaje_mediator();
+test_filtrarUsuarios();
